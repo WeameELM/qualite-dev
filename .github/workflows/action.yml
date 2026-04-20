@@ -23,3 +23,5 @@ jobs:
           chmod u+x ./gradlew
           ./gradlew test -i | grep -E " > |BUILD"
           ./gradlew jacocoTestReport
+
+    #pitie que ca marche
