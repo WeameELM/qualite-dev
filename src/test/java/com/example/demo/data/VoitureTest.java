@@ -11,7 +11,7 @@ public class VoitureTest {
 
     @Test
     void creerVoiture(){
-        Voiture wewe = new Voiture('Citroen', 1500) ; 
+        Voiture wewe = new Voiture("Citroen", 1500) ; 
         Assert.isTrue(wewe.getMarque().equals("Citroen"), "Doit être Citroen") ; 
         Assert.isTrue(wewe.getPrix() == 1500, "Doit être 1500") ; 
         Assert.isTrue(wewe.getId() == 0, "Doit être 0") ; 
