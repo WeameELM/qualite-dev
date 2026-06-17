@@ -6,16 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     name: build
     steps:
-      - uses: actions/checkout@v4        # v2 → v4
+      - uses: actions/checkout@v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v4      # v3 → v4
+        uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'        # 'adopt' → 'temurin' (adopt est déprécié)
+          distribution: 'temurin'
       - name: Build and test
         working-directory: .
         run: |
           export SHELL=/bin/bash
           chmod u+x ./gradlew
-          ./gradlew test -i | grep -E " > |BUILD"
-          ./gradlew jacocoTestReports
+          ./gradlew test --info 2>&1 | grep -E "FAILED|PASSED|Exception|expected|but was|Error"
+          ./gradlew jacocoTestReport
