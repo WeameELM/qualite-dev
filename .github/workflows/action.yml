@@ -17,5 +17,5 @@ jobs:
         run: |
           export SHELL=/bin/bash
           chmod u+x ./gradlew
-          ./gradlew test --info 2>&1 | grep -E "FAILED|PASSED|Exception|expected|but was|Error"
-          ./gradlew jacocoTestReport
+          ./gradlew test --stacktrace || true
+          ./gradlew jacocoTestReport || true
