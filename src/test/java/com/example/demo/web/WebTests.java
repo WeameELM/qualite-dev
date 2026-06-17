@@ -48,7 +48,7 @@ class WebTests {
     @Test
     void getStatistiques_retourneEchantillon() throws Exception {
         // Stubbing : le mock retourne un Echantillon connu
-        Echantillon echantillon = new Echantillon(100.0, 2);   // à adapter selon constructeur
+        Echantillon echantillon = new Echantillon(100, 2);  // à adapter selon constructeur
         when(statistiqueImpl.prixMoyen()).thenReturn(echantillon);
 
         mockMvc.perform(get("/statistique")

@@ -1,25 +1,21 @@
 name: CI
 on:
-  # Le script se lance sur un pull request
   - pull_request
 jobs:
   job1:
-    # Sur un machine chez Github sur laquelle on demande l'installation d'ubuntu via Docker
     runs-on: ubuntu-latest
     name: build
     steps:
-      - uses: actions/checkout@v2
-      # Un script peut faire appel à d'autres scripts, ici celui d'installer Java
+      - uses: actions/checkout@v4        # v2 → v4
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4      # v3 → v4
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'        # 'adopt' → 'temurin' (adopt est déprécié)
       - name: Build and test
-      # Compilation du projet et lancement des tests écrits par le développeur
         working-directory: .
         run: |
           export SHELL=/bin/bash
           chmod u+x ./gradlew
           ./gradlew test -i | grep -E " > |BUILD"
-          ./gradlew jacocoTestReport
+          ./gradlew jacocoTestReports
